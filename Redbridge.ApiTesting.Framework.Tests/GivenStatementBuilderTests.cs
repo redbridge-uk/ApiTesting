@@ -3,7 +3,6 @@ using Moq;
 using NUnit.Framework;
 using Redbridge.ApiTesting.Framework.Extensions;
 using Redbridge.ApiTesting.Framework.Tasks.Givens;
-using Redbridge.ApiTesting.Framework.Tasks.Whens;
 
 namespace Redbridge.ApiTesting.Framework.Tests
 {

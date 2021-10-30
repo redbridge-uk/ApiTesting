@@ -1,5 +1,4 @@
 ﻿using System;
-using Easilog;
 using Redbridge.ApiTesting.Framework.Tasks;
 using Redbridge.Configuration;
 using Redbridge.Console.Diagnostics;
@@ -11,8 +10,7 @@ namespace Redbridge.ApiTesting.Framework.Tests
         public UnitTestScenario(IApplicationSettingsRepository appSettings, string name, string description = "") 
             : base(appSettings, new ConsoleLogWriter(), name, description) {}
 
-        public override TestUserSession CreateSession(string name, string email, string password, bool addToSessionCollection = true,
-            string agent = WellKnownClient.TestingFrameworkClient)
+        public override TestUserSession CreateSession(string name, string email, string password, bool addToSessionCollection = true, string agent = "TestingFramework")
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             return new TestUserSession(this, name);

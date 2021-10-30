@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Easilog;
 using Redbridge.ApiTesting.Framework.Exceptions;
 using Redbridge.ApiTesting.Framework.Extensions;
 using Redbridge.ApiTesting.Framework.Tasks;
@@ -20,7 +19,7 @@ namespace Redbridge.ApiTesting.Framework
         private readonly UserSessionCollection<TUserSession> _sessionsCollection = new UserSessionCollection<TUserSession>();
         private readonly ScenarioStatements<TUserSession> _statements;
 
-        protected TestScenario(IApplicationSettingsRepository appSettings, ILogger logger, string name, string description = "")
+        protected TestScenario (IApplicationSettingsRepository appSettings, ILogger logger, string name, string description = "")
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Description = description;
@@ -35,12 +34,8 @@ namespace Redbridge.ApiTesting.Framework
             var administratorPassword = Settings.GetStringValue("administratorPassword");
             if (administratorPassword == null) throw new TestScenarioException("The application setting 'administratorPassword' must be configured. Null or empty string values are not supported.");
 
-            var serviceBaseUrl = Settings.GetUrl(ApplicationSettings.ServiceApiUrlKey);
-            if (serviceBaseUrl == null) throw new TestScenarioException("The application setting 'easilogApiUrl' must be configured. Null or empty string values are not supported.");
-
-            Logger.WriteInfo($"Using service url {serviceBaseUrl} as test service.");
-            _administratorSession = CreateSession("Administrator", administratorUser, administratorPassword, false);
-            _anonymousSession = CreateSession("Anonymous", string.Empty, string.Empty, false);
+            _administratorSession = CreateSession("Administrator", administratorUser, administratorPassword, false, "");
+            _anonymousSession = CreateSession("Anonymous", string.Empty, string.Empty, false, "");
             _statements = new ScenarioStatements<TUserSession>();
         }
 
@@ -48,8 +43,8 @@ namespace Redbridge.ApiTesting.Framework
 
         protected IApplicationSettingsRepository Settings { get; }
 
-        public abstract TUserSession CreateSession(string name, string email, string password = "",
-            bool addToSessionCollection = true, string agent = WellKnownClient.TestingFrameworkClient);
+        public abstract TUserSession CreateSession(string name, string email, string password,
+            bool addToSessionCollection, string agent);
 
         public UserSessionCollection<TUserSession> Sessions => _sessionsCollection;
         public TUserSession Administrator => _administratorSession;
