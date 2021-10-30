@@ -8,7 +8,7 @@ using Redbridge.ApiTesting.Framework.Tasks.Thens;
 
 namespace Redbridge.ApiTesting.Azure.Tasks.Then
 {
-    public abstract class SignalRMonitorTask<TUserSession> : ThenScenarioTask<TUserSession> where TUserSession : IUserSession<TUserSession>, IMonitorTask
+    public abstract class SignalRMonitorTask<TUserSession> : ThenScenarioTask<TUserSession> where TUserSession : IUserSession<TUserSession>, IMonitorTask<TUserSession>
     {
         protected SignalRMonitorTask()
         {

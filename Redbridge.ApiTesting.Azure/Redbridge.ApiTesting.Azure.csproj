@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>Redbridge.ApiTesting.Azure</PackageId>
+    <Copyright>Redbridge Ltd</Copyright>
+    <PackageTags>Redbridge SDK C#</PackageTags>
+    <PackageDescription>Testing library for API's written in C#.</PackageDescription>
+    <PackageIconUrl>https://github.com/redbridge-uk/resources/blob/master/redbridge_32.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
